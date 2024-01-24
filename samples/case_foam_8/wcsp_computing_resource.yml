@@ -1,0 +1,5 @@
+computing_resource:
+  hostname: "localhost"
+  port: 3022
+  username: "sshuser"
+  password: "123"

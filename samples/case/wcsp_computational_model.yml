@@ -1,0 +1,4 @@
+computational_model:
+  resource: "https://gitcdn.link/cdn/dealenx/8caaacdb0bfcbba43d8f16c36dd86376/raw/5c9e50b61ec6b8be048c4e42a4f9ea7dde03dad9/case.tar.gz"
+  type: "http"
+  # type: "file_system"

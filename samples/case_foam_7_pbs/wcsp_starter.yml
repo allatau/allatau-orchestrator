@@ -1,0 +1,11 @@
+solver:
+  software: "openfoam"
+  version: "7"
+  script:
+    - "source /opt/openfoam7/etc/bashrc"
+    - "blockMesh"
+    - "icoFoam"
+    - "sleep 50"
+
+job_scheduler:
+  software: "pbs"

@@ -1,0 +1,18 @@
+computing_resource:
+  hostname: "localhost"
+  port: 2022
+  username: "sshuser"
+  password: "123"
+
+solver:
+  software: "openfoam"
+  version: "9"
+  script:
+    - "#!/bin/bash"
+    - "source /opt/openfoam9/etc/bashrc"
+    - "cp -r /opt/openfoam9/tutorials/incompressible/simpleFoam/pitzDaily ."
+    - "cd pitzDaily"
+    - "blockMesh"
+    - "simpleFoam > log &"
+
+files: "."

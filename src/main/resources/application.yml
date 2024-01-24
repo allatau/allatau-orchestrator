@@ -1,0 +1,48 @@
+micronaut:
+  application:
+    name: example-jobrunr-micronaut
+  metrics:
+    enabled: true
+  server:
+    port: 7070
+
+datasources:
+  default:
+    url: jdbc:h2:file:/tmp/default
+    driverClassName: org.h2.Driver
+
+#  mongodb:
+#    servers.*.uuid-representation: STANDARD
+#    uri: mongodb://127.0.0.1:27017/wscp
+
+#mongodb:
+#  servers.*.uuid-representation: STANDARD
+#  uri: mongodb://127.0.0.1:27017/jobrunr
+
+#redis:
+#  uri: redis://localhost
+
+#elasticsearch:
+#  httpHosts: http://127.0.0.1:9200
+
+jobrunr:
+  background-job-server:
+    enabled: ${JOBRUNR_JOBS:true}
+  dashboard:
+    enabled: true
+    port: 7000
+  job-scheduler:
+    enabled: true
+  jobs:
+    retry-back-off-time-seed: 2
+
+endpoints:
+  health:
+    enabled: true
+    details-visible: anonymous
+  metrics:
+    enabled: true
+    sensitive: false
+
+myjob:
+  cron: "*/15 * * * *"

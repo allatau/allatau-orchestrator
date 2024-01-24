@@ -1,0 +1,70 @@
+plugins {
+    id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("io.micronaut.application") version "4.1.2"
+}
+
+version = "0.1"
+group = "org.wscp"
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+micronaut {
+    version '4.1.6'
+    runtime("netty")
+    testRuntime("junit5")
+    processing {
+        incremental(true)
+        annotations("org.wscp.*")
+    }
+}
+
+dependencies {
+    implementation 'org.yaml:snakeyaml:1.30'
+    implementation 'com.jcraft:jsch:0.1.54'
+    implementation 'com.hierynomus:sshj:0.31.0'
+    implementation 'org.slf4j:slf4j-api:1.7.22'
+    implementation 'org.slf4j:slf4j-log4j12:1.7.22'
+    implementation 'org.slf4j:slf4j-nop:1.7.2'
+    implementation 'org.apache.sshd:sshd-core:2.8.0'
+    implementation 'org.apache.sshd:sshd-sftp:2.8.0'
+    implementation 'org.apache.commons:commons-vfs2:2.4'
+    implementation 'org.xerial:sqlite-jdbc:3.36.0.3'
+    implementation 'com.google.code.gson:gson:2.8.7'
+    implementation 'org.slf4j:slf4j-simple:2.0.3'
+    implementation 'org.apache.kafka:kafka_2.12:3.2.3'
+
+    implementation 'io.micronaut:micronaut-http-client'
+    implementation 'io.micronaut:micronaut-runtime'
+    implementation 'io.micronaut:micronaut-management'
+    implementation 'com.h2database:h2'
+    implementation 'io.micronaut:micronaut-jackson-databind'
+    implementation 'org.jobrunr:jobrunr-micronaut-feature:6.3.2'
+
+    runtimeOnly "io.micronaut.sql:micronaut-jdbc-hikari"
+    implementation 'io.micronaut.data:micronaut-data-tx'
+
+    runtimeOnly 'org.yaml:snakeyaml'
+    runtimeOnly 'ch.qos.logback:logback-classic'
+    compileOnly 'org.graalvm.nativeimage:svm'
+
+    implementation 'io.micronaut.validation:micronaut-validation'
+    implementation("io.micronaut.mongodb:micronaut-mongo-sync")
+
+    testImplementation 'org.awaitility:awaitility'
+    testImplementation 'org.assertj:assertj-core'
+
+    implementation("info.picocli:picocli")
+    implementation("io.micronaut.picocli:micronaut-picocli")
+}
+
+
+application {
+    mainClass.set("org.wscp.Application")
+}
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}

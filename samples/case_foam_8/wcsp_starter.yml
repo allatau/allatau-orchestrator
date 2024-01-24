@@ -1,0 +1,7 @@
+solver:
+  software: "openfoam"
+  version: "8"
+  script:
+    - "source /opt/openfoam8/etc/bashrc"
+    - "blockMesh"
+    - "icoFoam"
