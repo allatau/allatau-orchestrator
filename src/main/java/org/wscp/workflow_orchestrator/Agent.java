@@ -331,6 +331,26 @@ public class Agent implements ComputationalModelImpl, ComputingResourceImpl, Sta
         }
     }
 
+    public void archiveFiles() {
+        try {
+            SSHClient ssh = new SSHClient(resource.getUsername(), resource.getPassword(), resource.getHostname(), resource.getPort());
+            ssh.startClient();
+            String taskFolderName = this.id;
+            String calculationsFolder = "~/calculations";
+            String taskFolder = calculationsFolder + "/" + taskFolderName;
+
+            String logs = ssh.exec(String.format("tar -czf %s/archive.tar.gz %s", taskFolder, taskFolder));
+
+            logger.info("The archive of the files is already prepared:");
+
+            ssh.stopClient();
+
+        } catch (Exception e) {
+//            System.out.println(e);
+            logger.info(e.toString());
+        }
+    }
+
     public boolean killProccess() {
         boolean fileExists = false;
         try {

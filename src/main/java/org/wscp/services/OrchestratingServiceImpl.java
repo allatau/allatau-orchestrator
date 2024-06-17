@@ -107,7 +107,6 @@ public class OrchestratingServiceImpl implements OrchestratingService {
             agent.process();
 
 
-
             // Получаем все записи и выводим их на консоль
             LOGGER.info("The agent (id=" + agent.getId() + ") have prepared a job to be started");
         } catch (Exception e) {
@@ -136,6 +135,11 @@ public class OrchestratingServiceImpl implements OrchestratingService {
 
                 finalDbHandler.addTask(new Task(agent.getId(),TaskStatus.COMPLETED, agentObj));
                 LOGGER.info("id: " + agent.getId() + " status: " + TaskStatus.COMPLETED);
+
+                // Сохранение архива
+                final JobId enqueuedJobIdForLogs = jobScheduler.<OrchestratingService>enqueue(orchestratingService -> orchestratingService.doCalculationArchive(agent, JobContext.Null));
+                finalDbHandler.recordJobIdToTaskById(enqueuedJobIdForLogs.toString(), agent.getId());
+
             }
 
 
@@ -157,6 +161,22 @@ public class OrchestratingServiceImpl implements OrchestratingService {
             throw(e);
         }
     }
+
+    public void doCalculationArchive(Agent agent, JobContext jobContext) throws Exception {
+        agent.assignLogger(LOGGER);
+
+        try {
+
+            agent.assignLogger(LOGGER);
+
+            agent.archiveFiles();
+
+        } catch (Exception e) {
+            throw(e);
+        }
+    }
+
+
 
     public void doCalculationAbort(Agent agent, JobContext jobContext) throws Exception {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();

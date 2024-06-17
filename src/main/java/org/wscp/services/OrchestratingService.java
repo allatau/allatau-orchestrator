@@ -25,4 +25,7 @@ public interface OrchestratingService {
     @Job(name = "Viewing logs of the calculation on the remote cluster", retries=1)
     void viewCalculationLogs(Agent agent, JobContext jobContext) throws Exception;
 
+    @Job(name = "To archive files of the calculation on the remote cluster", retries=1)
+    void doCalculationArchive(Agent agent, JobContext jobContext) throws Exception;
+
 }
