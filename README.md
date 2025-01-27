@@ -1,3 +1,10 @@
+# Installation
+
+```
+cp example.sqlite wscp.sqlite
+./gradlew run # requires JDK 17
+```
+
 # JobRunr Micronaut example
 
 This repository shows an example how you can integrate [JobRunr](https://www.jobrunr.io) and [Micronaut](https://micronaut.io/).
